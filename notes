@@ -1,0 +1,29 @@
+        public void CompressImage(Stream stream, string path)
+        {
+            Contract.Requires(path != null);
+
+            const long quality = 90L;
+
+            using var image = new Bitmap(System.Drawing.Image.FromStream(stream));
+            using var graphics = Graphics.FromImage(image);
+            graphics.CompositingQuality = CompositingQuality.HighQuality;
+            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            graphics.SmoothingMode = SmoothingMode.HighQuality;
+            graphics.CompositingMode = CompositingMode.SourceCopy;
+            graphics.DrawImageUnscaled(image, 0, 0);
+            graphics.Flush(FlushIntention.Sync);
+
+            using var ms = new MemoryStream();
+            var qualityParamId = Encoder.Quality;
+            var encoderParameters = new EncoderParameters(1);
+            encoderParameters.Param[0] = new EncoderParameter(qualityParamId, quality);
+            var codec = ImageCodecInfo.GetImageDecoders()
+                .FirstOrDefault(codecx => codecx.FormatID == ImageFormat.Jpeg.Guid);
+            image.Save(ms, codec, encoderParameters);
+
+            ms.Seek(0, SeekOrigin.Begin);
+            byte[] byteArray = ms.ToArray();
+            var type = MimeTypeMap.List.MimeTypeMap.GetMimeType("jpg").First();
+            UploadToStorage(byteArray, path, "uploads", type);
+        }
