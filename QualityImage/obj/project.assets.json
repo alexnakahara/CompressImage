@@ -492,11 +492,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alexander.nakahara\\Desktop\\QualityImage\\QualityImage\\QualityImage.csproj",
+      "projectUniqueName": "C:\\Users\\alexander.nakahara\\Documents\\CompressImage\\QualityImage\\QualityImage.csproj",
       "projectName": "QualityImage",
-      "projectPath": "C:\\Users\\alexander.nakahara\\Desktop\\QualityImage\\QualityImage\\QualityImage.csproj",
+      "projectPath": "C:\\Users\\alexander.nakahara\\Documents\\CompressImage\\QualityImage\\QualityImage.csproj",
       "packagesPath": "C:\\Users\\alexander.nakahara\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alexander.nakahara\\Desktop\\QualityImage\\QualityImage\\obj\\",
+      "outputPath": "C:\\Users\\alexander.nakahara\\Documents\\CompressImage\\QualityImage\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

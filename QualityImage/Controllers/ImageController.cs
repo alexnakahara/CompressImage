@@ -14,39 +14,29 @@ namespace QualityImage.Controllers
     [Route("[controller]")]
     public class ImageController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<ImageController> _logger;
+        private static string getOk = "OK";
         private readonly ImageService _service;
         string _path = "";
 
-        public ImageController(ILogger<ImageController> logger, ImageService service, IWebHostEnvironment environment)
+        public ImageController(ImageService service, IWebHostEnvironment environment)
         {
-            _logger = logger;
             _service = service;
-
-            _path = Path.Combine(environment.ContentRootPath, "teste");
+            _path = Path.Combine(environment.ContentRootPath, "Images");
             Directory.CreateDirectory(_path);
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok();
+            return Ok(getOk);
         }
 
-        // https://localhost:44303/image?quality=70&tipo=0
+        // Example: https://localhost:44303/image?quality=70&tipo=0
         [HttpPost]
-        public async Task<IActionResult> Post(IFormFile file, [FromQuery] long quality, [FromQuery] int tipo)
+        public IActionResult Post(IFormFile file, [FromQuery] long quality, [FromQuery] int tipo)
         {
             try
             {
-                // Full path to file in temp location
-                //var filePath = Path.GetTempFileName();
-
                 _service.quality = quality;
 
                 if (file.Length > 0)
