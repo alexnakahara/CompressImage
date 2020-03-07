@@ -1,5 +1,7 @@
 # Compress Image
-Image processing, and in particular image resizing, is a common requirement for web applications. In the project, there's 3 functions that use different libraries with .NET Core to process images. You can set quality, size and Image file formats. 
+Image processing, and in particular image resizing, is a common requirement for web applications. 
+
+In the project there're 3 functions that use different libraries with .NET Core to process images. You can set quality, size and Image file formats. 
 
 Are they:
 
