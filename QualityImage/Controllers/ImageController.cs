@@ -31,7 +31,7 @@ namespace QualityImage.Controllers
             return Ok(getOk);
         }
 
-        // Example: https://localhost:44303/image?quality=70&tipo=0
+        // Example: https://localhost:44303/image?quality=70&type=0
         [HttpPost]
         public IActionResult Post(IFormFile file, [FromQuery] long quality, [FromQuery] int type)
         {
