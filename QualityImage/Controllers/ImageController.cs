@@ -33,7 +33,7 @@ namespace QualityImage.Controllers
 
         // Example: https://localhost:44303/image?quality=70&tipo=0
         [HttpPost]
-        public IActionResult Post(IFormFile file, [FromQuery] long quality, [FromQuery] int tipo)
+        public IActionResult Post(IFormFile file, [FromQuery] long quality, [FromQuery] int type)
         {
             try
             {
@@ -46,14 +46,21 @@ namespace QualityImage.Controllers
                         file.CopyTo(ms);
                         ms.Position = 0L;
 
-                        if (tipo == 0)
-                            _service.CoreCompact(ms, _path);
-                        else if (tipo == 1)
-                            _service.MagicCompact(ms, _path);
-                        else if (tipo == 2)
-                            _service.SharpCompactJPG(ms, _path);
-                        else if (tipo == 3)
-                            _service.SharpCompactPNG(ms, _path);
+                        switch (type)
+                        {
+                            case 0:
+                                _service.CoreCompact(ms, _path);
+                                break;
+                            case 1:
+                                _service.MagicCompact(ms, _path);
+                                break;
+                            case 2:
+                                _service.SharpCompactJPG(ms, _path);
+                                break;
+                            case 3:
+                                _service.SharpCompactPNG(ms, _path);
+                                break;
+                        }
                     }
                 }
 
